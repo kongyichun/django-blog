@@ -1,23 +1,30 @@
 from django.shortcuts import render
 from playApp.models import User
 from playApp import models
+from django.http import HttpResponseRedirect
+from playApp.forms import NameForm
+
 
 
 def index(request):
-    user_list = models.UserInfo.objects.all()
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        # 将数据保存到数据库
-        if username and password:
-            result = models.UserInfo.objects.filter(user=username)
-            if not len(result):
-                models.UserInfo.objects.create(user=username, pwd=password)
-    return render(request, '../templates/index.html',{'data': user_list})
-
+    post_list = models.UserPost.objects.all()
+    return render(request, '../templates/index.html',{'data': post_list})
 
 def post(request):
-    return render(request, '../templates/post.html')
+    # 如果form通过POST方法发送数据
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            # 处理form.cleaned_data中的数据
+            # ...
+            # 重定向到一个新的URL
+            models.UserPost.objects.create(article_name=request.POST.get('title'), content=request.POST.get('content'))
+            return HttpResponseRedirect('/index/')
+
+    # 如果是通过GET方法请求数据，返回一个空的表单
+    else:
+        form = NameForm()
+    return render(request, '../templates/post.html', {'form': form})
 
 
 def comment(request):

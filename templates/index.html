@@ -11,3 +11,21 @@
       </div>
     </div>
 {% endblock %}
+
+{% block content%}
+    <div class="col-sm-8 blog-main">
+        {% for item in data %}
+<!--                <td>{{ item.article_name }}</td>-->
+                {% block post%}
+                <div class="blog-post">
+                    <h2 class="blog-post-title">{{item.article_name}}</h2>
+                    <p class="blog-post-meta">by <a href="#">Yichun</a></p>
+              
+                    <p class="text-justify">
+                        {{item.content}}
+                    </p>
+                </div>
+                {% endblock%}
+        {% endfor %}
+    </div>
+{% endblock %}

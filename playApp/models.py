@@ -1,4 +1,6 @@
 from django.db import models
+from django import forms
+
 
 # Create your models here.
 
@@ -17,6 +19,5 @@ class UserInfo(models.Model):
 
 
 class UserPost(models.Model):
-    user_id = models.CharField(max_length=32)
     article_name = models.CharField(max_length=200)
-    content = models.TextField
+    content = models.TextField()

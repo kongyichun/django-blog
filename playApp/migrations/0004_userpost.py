@@ -14,7 +14,6 @@ class Migration(migrations.Migration):
             name='UserPost',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user_id', models.CharField(max_length=32)),
                 ('article_name', models.CharField(max_length=200)),
             ],
         ),
