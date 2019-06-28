@@ -16,13 +16,19 @@ def index(request):
     return render(request, '../templates/index.html',{'data': user_list})
 
 
+def post(request):
+    return render(request, '../templates/post.html')
+
+
+def comment(request):
+    return render(request, '../templates/comment.html')
+
+
+def about(request):
+    return render(request, '../templates/about.html')
+
+
 def search(request):
-    # from django.db import connection, connections
-    # cursor = connection.cursor()  # cursor = connections['default'].cursor()
-    # cursor.execute("SELECT * from User where id = 1")
-    # row = cursor.fetchone()
-    # print("search result:",end='')
-    # print(row)
     for u in User.objects.all():
         print(u.age)
     return render(request, '../templates/index.html')

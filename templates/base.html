@@ -26,6 +26,7 @@
 
   <body>
 
+    {% block nav %}
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
@@ -36,12 +37,13 @@
         </nav>
       </div>
     </div>
+    {% endblock %}
 
     <div class="container">
 
       <div class="blog-header">
         <h1 class="blog-title">Yichun's Blog</h1>
-        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+        <p class="lead blog-description">Built with Django and Bootstrap</p>
       </div>
 
       <div class="row">

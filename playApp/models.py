@@ -14,3 +14,9 @@ class User(models.Model):
 class UserInfo(models.Model):
     user = models.CharField(max_length=32)
     pwd = models.CharField(max_length=32)
+
+
+class UserPost(models.Model):
+    user_id = models.CharField(max_length=32)
+    article_name = models.CharField(max_length=200)
+    content = models.TextField
