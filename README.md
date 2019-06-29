@@ -1,5 +1,5 @@
 # django-toy-website
-This project uses:
+This personal blog uses:
 
 Django 2.1.9
 
