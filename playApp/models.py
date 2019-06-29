@@ -2,15 +2,22 @@ from django.db import models
 from django import forms
 
 
-# Create your models here.
+class Users(models.Model):
+    gender = (
+        ('male', '男'),
+        ('female', '女'),
+    )
 
-
-class User(models.Model):
-    name = models.CharField(max_length=200)
-    age = models.BigIntegerField()
+    name = models.CharField(max_length=128, unique=True)
+    password = models.CharField(max_length=256)
+    email = models.EmailField(unique=True)
+    sex = models.CharField(max_length=32, choices=gender, default='男')
+    c_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = "User"
+        ordering = ['c_time']
+        verbose_name = 'BlogUser'
+        verbose_name_plural = 'BlogUsers'
 
 
 class UserInfo(models.Model):

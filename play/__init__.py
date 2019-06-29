@@ -1,4 +1,4 @@
 import pymysql
 import MySQLdb
-import django
-print(django.get_version())
+import pymysql
+pymysql.install_as_MySQLdb()

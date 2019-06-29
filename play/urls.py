@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from playApp import views
-from django.conf.urls import url
+from django.conf.urls import url, include
+
 
 urlpatterns = [
     url(r'^$', views.index),
@@ -26,4 +27,8 @@ urlpatterns = [
     path('post/',views.post),
     path('comment/',views.comment),
     path('about/',views.about),
+    path('login/', views.login),
+    path('register/', views.register),
+    path('logout/', views.logout),
+    path('captcha', include('captcha.urls'))
 ]
