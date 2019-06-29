@@ -28,3 +28,6 @@ class UserInfo(models.Model):
 class UserPost(models.Model):
     article_name = models.CharField(max_length=200)
     content = models.TextField()
+    user_name = models.CharField(max_length=128)
+    user_id = models.BigIntegerField()
+

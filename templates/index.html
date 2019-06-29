@@ -28,7 +28,7 @@
                 {% block post%}
                 <div class="blog-post">
                     <h2 class="blog-post-title">{{item.article_name}}</h2>
-                    <p class="blog-post-meta">by <a href="#">Yichun</a></p>
+                    <p class="blog-post-meta">by <a href="#">{{ item.user_name }}</a></p>
               
                     <p class="text-justify">
                         {{item.content}}

@@ -2,13 +2,14 @@ from django.shortcuts import render
 from playApp import models
 from playApp.models import UserPost
 from playApp.models import UserInfo
-# from playApp.models import Users
+from playApp.models import Users
 from django.http import HttpResponseRedirect
 from playApp.forms import *
+from playApp.utils import hash_code
 
 
 def index(request):
-    post_list = models.UserPost.objects.all()
+    post_list = models.UserPost.objects.order_by("-id")
     return render(request, '../templates/index.html',{'data': post_list})
 
 
@@ -20,7 +21,8 @@ def post(request):
             # 处理form.cleaned_data中的数据
             # ...
             # 重定向到一个新的URL
-            models.UserPost.objects.create(article_name=request.POST.get('title'), content=request.POST.get('content'))
+            models.UserPost.objects.create(article_name=request.POST.get('title'), content=request.POST.get('content'),
+                                           user_id=request.session['user_id'], user_name=request.session['user_name'])
             return HttpResponseRedirect('/index/')
 
     # 如果是通过GET方法请求数据，返回一个空的表单
@@ -55,7 +57,7 @@ def login(request):
             password = login_form.cleaned_data['password']
             try:
                 user = models.Users.objects.get(name=username)
-                if user.password == password:
+                if user.password == hash_code(password):
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
@@ -117,7 +119,7 @@ def register(request):
 
                 new_user = models.Users.objects.create()
                 new_user.name = username
-                new_user.password = password1
+                new_user.password = hash_code(password1)
                 new_user.email = email
                 new_user.sex = sex
                 new_user.save()
