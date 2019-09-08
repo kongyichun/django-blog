@@ -1,5 +1,5 @@
 # django-toy-website
-This personal blog uses:
+This kycnb personal blog uses:
 
 Django 2.1.9
 
